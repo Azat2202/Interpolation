@@ -2,12 +2,12 @@ import matplotlib.backend_bases
 import numpy as np
 import matplotlib.pyplot as plt
 
-x_cord = [1, 3, 5, 7, 10]  # x-координаты из таблицы
-y_cord = [2, -5, 6, 2, -7]  # y-координаты из таблицы
-x_size = [min(x_cord), max(x_cord)]
-amplitude = max(y_cord) - min(y_cord)
-y_size = [min(y_cord) - amplitude, max(y_cord) + amplitude]
-
+x_cord = [0, 10]
+y_cord = [0, 2]
+amplitude_y = max(y_cord) - min(y_cord)
+amplitude_x = x_cord[-1] - x_cord[0]
+y_size = [min(y_cord) - amplitude_y, max(y_cord) + amplitude_y]
+x_size = [min(x_cord) - amplitude_x * 0.1, max(x_cord) + amplitude_x * 0.1]
 
 def Li(i, x):
     buf = 1
@@ -35,7 +35,7 @@ def onclick(event: matplotlib.backend_bases.KeyEvent):
 
 
 def draw():
-    x = np.linspace(min(x_cord), max(x_cord))
+    x = np.linspace(min(x_cord) - amplitude_x ** 0.5, max(x_cord) + amplitude_x ** 0.5)
     plt.xlim(x_size)
     plt.ylim(y_size)
     plt.plot(x, lagrange(x), '-g')
