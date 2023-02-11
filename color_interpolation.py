@@ -14,6 +14,7 @@ for ax, interp_method in zip(axs.flat, methods):
     if interp_method == 'None':
         ax.imshow(grid)
     elif interp_method == 'Bilinear':
+        # bilinear(grid)
         ax.imshow(bilinear(grid))
     ax.set_title(str(interp_method))
 

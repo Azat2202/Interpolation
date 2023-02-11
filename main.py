@@ -9,6 +9,7 @@ amplitude_x = x_cord[-1] - x_cord[0]
 y_size = [min(y_cord) - amplitude_y, max(y_cord) + amplitude_y]
 x_size = [min(x_cord) - amplitude_x * 0.1, max(x_cord) + amplitude_x * 0.1]
 
+
 def Li(i, x):
     buf = 1
     for j in range(len(x_cord)):
@@ -27,6 +28,9 @@ def lagrange(x):
 def onclick(event: matplotlib.backend_bases.KeyEvent):
     global x_cord, y_cord
     if event.key == 'a':
+        if event.xdata in x_cord:
+            print('This dot exists')
+            return
         plt.clf()
         x_cord.append(event.xdata)
         y_cord.append(event.ydata)
@@ -35,7 +39,8 @@ def onclick(event: matplotlib.backend_bases.KeyEvent):
 
 
 def draw():
-    x = np.linspace(min(x_cord) - amplitude_x ** 0.5, max(x_cord) + amplitude_x ** 0.5)
+    x = np.linspace(min(x_cord) - amplitude_x ** 0.5, max(x_cord) + amplitude_x ** 0.5, num=25*len(x_cord))
+    print(amplitude_y)
     plt.xlim(x_size)
     plt.ylim(y_size)
     plt.plot(x, lagrange(x), '-g')
