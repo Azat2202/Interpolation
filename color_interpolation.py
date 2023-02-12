@@ -17,7 +17,7 @@ for ax, interp_method in zip(axs.flat, methods):
     elif interp_method == 'Bilinear':
         ax.imshow(bilinear(grid, (30, 30)), cmap=cmap)
     elif interp_method == 'Bicubic':
-        ax.imshow(cubic_interpolation(grid, (30, 30)))
+        ax.imshow(cubic_interpolation(grid, (30, 30)), cmap=cmap)
     ax.set_title(str(interp_method))
 
 # fig = plt.figure(figsize=(7, 4))
